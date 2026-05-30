@@ -192,7 +192,7 @@
   .section-head .rule { flex: 1; height: 1px; background: var(--hair); }
 
   .paper {
-    padding: 22px 0 22px 22px;
+    padding: 14px 0 14px 22px;
     border-left: 2px solid transparent;
     margin-left: -22px;
     transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease;
@@ -202,6 +202,12 @@
     background: linear-gradient(90deg, rgba(27,79,138,0.05), transparent 60%);
   }
   .paper + .paper { border-top: 1px solid var(--hair); }
+
+  .paper-head {
+    display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap;
+    margin: 0 0 6px;
+  }
+  .paper-head .paper-title { margin: 0; }
 
   .paper-title {
     font-family: var(--serif);
@@ -213,25 +219,26 @@
   .paper-title a { text-decoration: none; transition: color 0.2s ease; }
   .paper-title a:hover { color: var(--accent); }
 
-  .authors { font-size: 0.95rem; color: var(--muted); margin: 0 0 12px; }
+  .authors { font-size: 0.95rem; color: var(--muted); margin: 0 0 10px; }
   .authors a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--hair); transition: color 0.2s, border-color 0.2s; }
   .authors a:hover { color: var(--accent); border-color: var(--accent); }
 
   .badge {
-    display: inline-block;
-    font-size: 0.74rem; font-weight: 600;
-    letter-spacing: 0.04em;
+    display: inline-flex; align-items: center;
+    font-size: 0.72rem; font-weight: 600;
+    letter-spacing: 0.03em;
     padding: 3px 10px; border-radius: 100px;
     background: var(--accent-soft); color: var(--accent);
-    margin: 0 0 12px;
+    margin: 0;
+    white-space: nowrap;
   }
   .badge.neutral { background: var(--paper-deep); color: var(--muted); }
 
-  .links { display: flex; gap: 10px; flex-wrap: wrap; }
+  .links { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
   .links a {
     font-size: 0.82rem; font-weight: 500;
     text-decoration: none;
-    padding: 5px 13px;
+    padding: 4px 12px;
     border: 1px solid var(--hair);
     border-radius: 2px;
     color: var(--ink);
@@ -240,21 +247,38 @@
   .links a:hover { border-color: var(--accent); color: var(--accent); }
   .links a.soon { color: var(--muted); border-style: dashed; pointer-events: none; }
 
-  /* ---- expandable abstract (native <details>, no JS) ---- */
-  .abstract { margin-top: 16px; }
-  .abstract summary {
-    list-style: none; cursor: pointer;
-    display: inline-flex; align-items: center; gap: 8px;
-    font-size: 0.82rem; font-weight: 600; letter-spacing: 0.05em;
-    text-transform: uppercase; color: var(--accent);
-    user-select: none;
+  /* ---- coverage note, sits inline after the buttons ---- */
+  .coverage { font-size: 0.85rem; color: var(--ink); font-weight: 600; align-self: center; }
+  .coverage a {
+    font-weight: 400; font-style: italic;
+    color: var(--muted); text-decoration: none;
+    border: none; border-radius: 0; padding: 0;
+    transition: color 0.2s ease;
   }
+  .coverage a:hover { color: var(--accent); }
+
+  /* ---- expandable abstract (native <details>, no JS) ----
+     The toggle is a button matching the Paper link; it sits in the
+     same row, and the panel expands full-width below when opened.   */
+  .abstract[open] { flex-basis: 100%; }
+  .abstract summary {
+    list-style: none; cursor: pointer; user-select: none;
+    display: inline-flex; align-items: center; gap: 6px;
+    width: max-content;
+    font-size: 0.82rem; font-weight: 500;
+    padding: 4px 12px;
+    border: 1px solid var(--hair); border-radius: 2px;
+    color: var(--ink);
+    transition: all 0.2s ease;
+  }
+  .abstract summary:hover { border-color: var(--accent); color: var(--accent); }
+  .abstract[open] summary { border-color: var(--accent); color: var(--accent); }
   .abstract summary::-webkit-details-marker { display: none; }
-  .abstract summary .chev { transition: transform 0.25s ease; font-size: 0.85em; }
+  .abstract summary .chev { transition: transform 0.25s ease; font-size: 0.8em; }
   .abstract[open] summary .chev { transform: rotate(90deg); }
   .abstract-body {
-    margin-top: 14px;
-    padding: 16px 20px;
+    margin-top: 12px;
+    padding: 14px 18px;
     background: var(--paper-deep);
     border-left: 2px solid var(--accent);
     border-radius: 3px;
@@ -263,6 +287,7 @@
     color: var(--ink);
     max-width: 70ch;
   }
+  .abstract-body p { margin: 0; }
   .abstract[open] .abstract-body { animation: fade 0.35s ease; }
   @keyframes fade { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: none; } }
 
@@ -329,10 +354,6 @@
   <header class="nav">
     <div class="nav-inner">
       <a class="wordmark" href="#top">Adrien Couturier</a>
-      <nav class="nav-links">
-        <a href="#research">Research</a>
-        <a href="https://adrienycouturier.github.io/website_files/CV_Adrien_Couturier.pdf" target="_blank" rel="noopener">CV <span class="arr">&#8599;</span></a>
-      </nav>
     </div>
   </header>
 
@@ -342,10 +363,9 @@
     <section class="hero">
       <div class="wrap hero-grid">
         <div>
-          <p class="eyebrow reveal d1">Macroeconomist</p>
           <h1 class="name reveal d1">Adrien<br>Couturier</h1>
           <p class="lede reveal d2">
-            I study how microeconomic heterogeneity across households, firms, and
+            I am a macroeconomist studying how microeconomic heterogeneity across households, firms, and
             regions shapes macroeconomic dynamics — with particular emphasis on how
             economic agents&rsquo; beliefs and expectations drive business cycles and
             the transmission of monetary and fiscal policy.
@@ -355,8 +375,7 @@
             <strong>University College London (UCL)</strong> as an Assistant Professor.
           </p>
           <div class="cta-row reveal d4">
-            <a class="btn btn-primary" href="#research">View research</a>
-            <a class="btn btn-ghost" href="https://adrienycouturier.github.io/website_files/CV_Adrien_Couturier.pdf" target="_blank" rel="noopener">Curriculum Vitae</a>
+            <a class="btn btn-primary" href="https://adrienycouturier.github.io/website_files/CV_Adrien_Couturier.pdf" target="_blank" rel="noopener">Curriculum Vitae</a>
           </div>
         </div>
         <div class="portrait reveal d3">
@@ -381,26 +400,29 @@
           <div class="links">
             <a href="https://adrienycouturier.github.io/website_files/JMP_Adrien_Couturier.pdf" target="_blank" rel="noopener">Paper</a>
             <a href="https://cepr.org/voxeu/columns/sentiment-channel-fiscal-policy" target="_blank" rel="noopener">VoxEU</a>
+            <details class="abstract">
+              <summary><span class="chev">&#9656;</span> Abstract</summary>
+              <!-- PASTE ABSTRACT BELOW, between the <p> tags -->
+              <div class="abstract-body"><p>Add the abstract for this paper here.</p></div>
+            </details>
           </div>
-          <details class="abstract">
-            <summary><span class="chev">&#9656;</span> Abstract</summary>
-            <!-- PASTE ABSTRACT BELOW, between the <p> tags -->
-            <div class="abstract-body"><p>Add the abstract for this paper here.</p></div>
-          </details>
         </article>
 
         <article class="paper">
-          <h3 class="paper-title"><a href="https://adrienycouturier.github.io/website_files/RKC_wip.pdf" target="_blank" rel="noopener">The Regional Keynesian Cross</a></h3>
+          <div class="paper-head">
+            <h3 class="paper-title"><a href="https://adrienycouturier.github.io/website_files/RKC_wip.pdf" target="_blank" rel="noopener">The Regional Keynesian Cross</a></h3>
+            <span class="badge">Revise &amp; Resubmit &middot; Review of Economic Studies</span>
+          </div>
           <p class="authors">with <a href="https://marcobellifemine.com/" target="_blank" rel="noopener">Marco Bellifemine</a> and <a href="https://www.rustamjamilov.com/" target="_blank" rel="noopener">Rustam Jamilov</a></p>
-          <span class="badge">Revise &amp; Resubmit &middot; Review of Economic Studies</span>
           <div class="links">
             <a href="https://adrienycouturier.github.io/website_files/RKC_wip.pdf" target="_blank" rel="noopener">Paper</a>
+            <details class="abstract">
+              <summary><span class="chev">&#9656;</span> Abstract</summary>
+              <!-- PASTE ABSTRACT BELOW, between the <p> tags -->
+              <div class="abstract-body"><p>Add the abstract for this paper here.</p></div>
+            </details>
+            <span class="coverage">Coverage: <a href="https://www.ecb.europa.eu/press/key/date/2024/html/ecb.sp240502~4066265c78.en.html" target="_blank" rel="noopener">Speech by P. R. Lane, ECB Chief Economist (2024)</a></span>
           </div>
-          <details class="abstract">
-            <summary><span class="chev">&#9656;</span> Abstract</summary>
-            <!-- PASTE ABSTRACT BELOW, between the <p> tags -->
-            <div class="abstract-body"><p>Add the abstract for this paper here.</p></div>
-          </details>
         </article>
 
         <article class="paper">
@@ -408,12 +430,12 @@
           <p class="authors">with <a href="https://marcobellifemine.com/" target="_blank" rel="noopener">Marco Bellifemine</a> and <a href="https://sites.google.com/view/mahdi-hosseini/home" target="_blank" rel="noopener">Seyed Hosseini Maasoum</a></p>
           <div class="links">
             <a href="https://adrienycouturier.github.io/website_files/DEHA_wip.pdf" target="_blank" rel="noopener">Paper</a>
+            <details class="abstract">
+              <summary><span class="chev">&#9656;</span> Abstract</summary>
+              <!-- PASTE ABSTRACT BELOW, between the <p> tags -->
+              <div class="abstract-body"><p>Add the abstract for this paper here.</p></div>
+            </details>
           </div>
-          <details class="abstract">
-            <summary><span class="chev">&#9656;</span> Abstract</summary>
-            <!-- PASTE ABSTRACT BELOW, between the <p> tags -->
-            <div class="abstract-body"><p>Add the abstract for this paper here.</p></div>
-          </details>
         </article>
 
         <article class="paper">
@@ -431,17 +453,20 @@
         </div>
 
         <article class="paper">
-          <h3 class="paper-title"><a href="https://adrienycouturier.github.io/website_files/ezrkc_wip.pdf" target="_blank" rel="noopener">Monetary Unions with Heterogeneous Fiscal Space</a></h3>
+          <div class="paper-head">
+            <h3 class="paper-title"><a href="https://adrienycouturier.github.io/website_files/ezrkc_wip.pdf" target="_blank" rel="noopener">Monetary Unions with Heterogeneous Fiscal Space</a></h3>
+            <span class="badge">Journal of International Economics, 2025</span>
+          </div>
           <p class="authors">with <a href="https://marcobellifemine.com/" target="_blank" rel="noopener">Marco Bellifemine</a> and <a href="https://www.rustamjamilov.com/" target="_blank" rel="noopener">Rustam Jamilov</a></p>
-          <span class="badge">Journal of International Economics, 2025</span>
           <div class="links">
             <a href="https://adrienycouturier.github.io/website_files/ezrkc_wip.pdf" target="_blank" rel="noopener">Paper</a>
+            <details class="abstract">
+              <summary><span class="chev">&#9656;</span> Abstract</summary>
+              <!-- PASTE ABSTRACT BELOW, between the <p> tags -->
+              <div class="abstract-body"><p>Add the abstract for this paper here.</p></div>
+            </details>
+            <span class="coverage">Coverage: <a href="https://repec.unibocconi.it/baffic/baf/papers/cbafwp25256.pdf" target="_blank" rel="noopener">Lecture by G. Giorgetti, Italian Minister of Economy and Finance (2025)</a></span>
           </div>
-          <details class="abstract">
-            <summary><span class="chev">&#9656;</span> Abstract</summary>
-            <!-- PASTE ABSTRACT BELOW, between the <p> tags -->
-            <div class="abstract-body"><p>Add the abstract for this paper here.</p></div>
-          </details>
         </article>
 
         <!-- ---- WORK IN PROGRESS ---- -->
@@ -451,8 +476,8 @@
         </div>
 
         <article class="paper">
-          <h3 class="paper-title">Crises without FIRE: Animal Spirits and the Financial Accelerator</h3>
-          <p class="authors">with <a href="https://marcobellifemine.com/" target="_blank" rel="noopener">Marco Bellifemine</a></p>
+          <h3 class="paper-title">Leveraged Beliefs: Investor Expectations and the Financial Accelerator</h3>
+          <p class="authors">with <a href="https://marcobellifemine.com/" target="_blank" rel="noopener">Marco Bellifemine</a> and Jacopo Tozzo</p>
         </article>
 
         <article class="paper">
@@ -471,12 +496,12 @@
           <p class="authors">with Benjamin Moll, Ricardo Reis and Soroush Sabet</p>
           <div class="links">
             <a href="https://adrienycouturier.github.io/website_files/FRST_wip.pdf" target="_blank" rel="noopener">Paper</a>
+            <details class="abstract">
+              <summary><span class="chev">&#9656;</span> Abstract</summary>
+              <!-- PASTE ABSTRACT BELOW, between the <p> tags -->
+              <div class="abstract-body"><p>Add the abstract for this paper here.</p></div>
+            </details>
           </div>
-          <details class="abstract">
-            <summary><span class="chev">&#9656;</span> Abstract</summary>
-            <!-- PASTE ABSTRACT BELOW, between the <p> tags -->
-            <div class="abstract-body"><p>Add the abstract for this paper here.</p></div>
-          </details>
         </article>
 
       </div>
