@@ -233,15 +233,19 @@
   .authors a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--hair); transition: color 0.2s, border-color 0.2s; }
   .authors a:hover { color: var(--accent); border-color: var(--accent); }
 
-  .badge {
-    display: inline-flex; align-items: center;
-    font-size: 0.72rem; font-weight: 600;
-    letter-spacing: 0.03em;
-    padding: 3px 10px; border-radius: 100px;
-    background: var(--accent-soft); color: var(--accent);
-    margin: 0;
-    white-space: nowrap;
-  }
+.badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.85rem;      /* was 0.72rem */
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  padding: 5px 14px;       /* was 3px 10px */
+  border-radius: 100px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  margin: 0;
+  white-space: nowrap;
+}
   .badge.neutral { background: var(--paper-deep); color: var(--muted); }
 
   .links { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
