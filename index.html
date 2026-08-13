@@ -212,6 +212,39 @@
   .contact-mail:hover { color: var(--accent); }
   .contact .socials { gap: 10px; }
 
+  /* institutional link under portrait */
+  .institution {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 18px;
+    padding: 9px 14px;
+    border: 1px solid var(--hair);
+    border-radius: 4px;
+    background: #fff;
+    text-decoration: none;
+    transition: border-color 0.22s ease, box-shadow 0.22s ease, transform 0.22s ease;
+  }
+  .institution:hover {
+    border-color: var(--accent);
+    box-shadow: 0 2px 12px rgba(27,79,138,0.10);
+    transform: translateY(-1px);
+  }
+  .institution-mark {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 1.05rem;
+    letter-spacing: 0.03em;
+    color: #fff;
+    background: var(--accent);
+    padding: 7px 10px;
+    border-radius: 3px;
+    line-height: 1;
+  }
+  .institution-text { display: flex; flex-direction: column; line-height: 1.25; }
+  .institution-text .inst-name { font-size: 0.9rem; font-weight: 600; color: var(--ink); }
+  .institution-text .inst-sub  { font-size: 0.78rem; color: var(--muted); }
+
   /* ============================================================
      RESEARCH
      ============================================================ */
@@ -425,7 +458,6 @@
       "@type": "Person",
       "@id": "https://adriencouturier.com/#adrien-couturier",
       "name": "Adrien Couturier",
-      "alternateName": "Adrien Couturier-Roguet",
       "description": "Assistant Professor of Economics at University College London (UCL), working on macroeconomics, monetary and fiscal policy, and heterogeneous-agent (HANK) models.",
       "url": "https://adriencouturier.com/",
       "mainEntityOfPage": { "@id": "https://adriencouturier.com/#profilepage" },
@@ -533,6 +565,13 @@
               </a>
             </div>
           </div>
+          <a class="institution" href="https://profiles.ucl.ac.uk/108837-adrien-couturier" target="_blank" rel="noopener">
+            <span class="institution-mark">UCL</span>
+            <span class="institution-text">
+              <span class="inst-name">University College London</span>
+              <span class="inst-sub">Faculty profile &rsaquo;</span>
+            </span>
+          </a>
         </div>
       </div>
     </section>
