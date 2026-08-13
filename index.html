@@ -3,13 +3,42 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Adrien Couturier</title>
+
+<!-- ============================================================
+     PRIMARY META
+     ============================================================ -->
+<title>Adrien Couturier — Assistant Professor of Economics, UCL</title>
+<meta name="description" content="Adrien Couturier is an Assistant Professor of Economics at University College London (UCL), working on macroeconomics, monetary and fiscal policy, and heterogeneous-agent (HANK) models." />
+<meta name="author" content="Adrien Couturier" />
+<link rel="canonical" href="https://adriencouturier.com/" />
+
+<!-- ============================================================
+     OPEN GRAPH  (controls link previews on LinkedIn, Slack, etc.
+     and reinforces the entity for crawlers)
+     ============================================================ -->
+<meta property="og:type" content="profile" />
+<meta property="og:title" content="Adrien Couturier — Assistant Professor of Economics, UCL" />
+<meta property="og:description" content="Macroeconomics, monetary and fiscal policy, and heterogeneous-agent models. Assistant Professor at University College London." />
+<meta property="og:url" content="https://adriencouturier.com/" />
+<meta property="og:image" content="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,h=1025,fit=crop/mePk24bz27UlL3z7/photo2-YNqMaBg2QEu27nD3.jpg" />
+<meta property="og:site_name" content="Adrien Couturier" />
+<meta property="profile:first_name" content="Adrien" />
+<meta property="profile:last_name" content="Couturier" />
+
+<!-- ============================================================
+     TWITTER / X CARD
+     ============================================================ -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@adricouturier" />
+<meta name="twitter:creator" content="@adricouturier" />
+<meta name="twitter:title" content="Adrien Couturier — Assistant Professor of Economics, UCL" />
+<meta name="twitter:description" content="Macroeconomics, monetary and fiscal policy, and heterogeneous-agent models." />
+<meta name="twitter:image" content="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,h=1025,fit=crop/mePk24bz27UlL3z7/photo2-YNqMaBg2QEu27nD3.jpg" />
 
 <!-- ============================================================
      FONTS
      Fraunces  = display serif (name, section titles, paper titles)
      Hanken Grotesk = body/UI sans (paragraphs, metadata, nav)
-     Swap these in the <link> below if you want a different feel.
      ============================================================ -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -360,51 +389,97 @@
     .section-head h2 { font-size: 1.4rem; }
   }
 </style>
+
 <!-- ============================================================
-     STRUCTURED DATA (JSON-LD) — declares you as a single entity
-     and links every profile that is "the same person".
-     Invisible to visitors.
+     STRUCTURED DATA (JSON-LD)
+     Uses an @graph so the WebSite, the ProfilePage, and the Person
+     are declared as distinct-but-linked nodes. ProfilePage +
+     mainEntity is Google's recommended pattern for a site that is
+     primarily about one person, and it makes the Person the
+     unambiguous subject of the page. Every profile is asserted as
+     the same entity via sameAs; ORCID is also given as a typed
+     identifier. Invisible to visitors.
      ============================================================ -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Person",
-  "@id": "https://adriencouturier.com/#adrien-couturier",
-  "name": "Adrien Couturier",
-  "alternateName": "Adrien Couturier-Roguet",
-  "url": "https://adriencouturier.com/",
-  "image": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,h=1025,fit=crop/mePk24bz27UlL3z7/photo2-YNqMaBg2QEu27nD3.jpg",
-  "email": "mailto:adrien.couturier@ucl.ac.uk",
-  "jobTitle": "Assistant Professor of Economics",
-  "knowsAbout": [
-    "Macroeconomics",
-    "Monetary Policy",
-    "Fiscal Policy",
-    "Heterogeneous-Agent New Keynesian models",
-    "Business Cycles",
-    "Expectations and Beliefs"
-  ],
-  "worksFor": {
-    "@type": "CollegeOrUniversity",
-    "name": "University College London",
-    "sameAs": "https://www.ucl.ac.uk/"
-  },
-  "alumniOf": {
-    "@type": "CollegeOrUniversity",
-    "name": "London School of Economics and Political Science",
-    "sameAs": "https://www.lse.ac.uk/"
-  },
-  "sameAs": [
-    "https://scholar.google.com/citations?user=LBjyEPIAAAAJ&hl=en",
-    "https://www.linkedin.com/in/adrien-couturier-6351a2169/",
-    "https://twitter.com/adricouturier",
-    "https://cepr.org/about/people/adrien-couturier",
-    "https://www.nber.org/people/adrien_couturier",
-    "https://ideas.repec.org/f/pco1219.html",
-     "https://orcid.org/0009-0005-2670-2910",
-     "https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=9669237",
-     "https://www.wikidata.org/wiki/Q140956179",
-     "https://profiles.ucl.ac.uk/108837-adrien-couturier"
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://adriencouturier.com/#website",
+      "url": "https://adriencouturier.com/",
+      "name": "Adrien Couturier",
+      "inLanguage": "en",
+      "publisher": { "@id": "https://adriencouturier.com/#adrien-couturier" }
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": "https://adriencouturier.com/#profilepage",
+      "url": "https://adriencouturier.com/",
+      "name": "Adrien Couturier — Assistant Professor of Economics, UCL",
+      "isPartOf": { "@id": "https://adriencouturier.com/#website" },
+      "mainEntity": { "@id": "https://adriencouturier.com/#adrien-couturier" },
+      "inLanguage": "en"
+    },
+    {
+      "@type": "Person",
+      "@id": "https://adriencouturier.com/#adrien-couturier",
+      "name": "Adrien Couturier",
+      "alternateName": "Adrien Couturier-Roguet",
+      "description": "Assistant Professor of Economics at University College London (UCL), working on macroeconomics, monetary and fiscal policy, and heterogeneous-agent (HANK) models.",
+      "url": "https://adriencouturier.com/",
+      "mainEntityOfPage": { "@id": "https://adriencouturier.com/#profilepage" },
+      "image": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,h=1025,fit=crop/mePk24bz27UlL3z7/photo2-YNqMaBg2QEu27nD3.jpg",
+      "email": "mailto:adrien.couturier@ucl.ac.uk",
+      "jobTitle": "Assistant Professor of Economics",
+      "knowsLanguage": ["en", "fr"],
+      "knowsAbout": [
+        "Macroeconomics",
+        "Monetary Policy",
+        "Fiscal Policy",
+        "Heterogeneous-Agent New Keynesian models",
+        "Business Cycles",
+        "Expectations and Beliefs"
+      ],
+      "identifier": [
+        {
+          "@type": "PropertyValue",
+          "propertyID": "ORCID",
+          "value": "0009-0005-2670-2910"
+        }
+      ],
+      "worksFor": {
+        "@type": "CollegeOrUniversity",
+        "name": "University College London",
+        "sameAs": [
+          "https://www.ucl.ac.uk/",
+          "https://en.wikipedia.org/wiki/University_College_London"
+        ]
+      },
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "London School of Economics and Political Science",
+        "sameAs": [
+          "https://www.lse.ac.uk/",
+          "https://en.wikipedia.org/wiki/London_School_of_Economics"
+        ]
+      },
+      "sameAs": [
+        "https://scholar.google.com/citations?user=LBjyEPIAAAAJ&hl=en",
+        "https://orcid.org/0009-0005-2670-2910",
+        "https://www.wikidata.org/wiki/Q140956179",
+        "https://profiles.ucl.ac.uk/108837-adrien-couturier",
+        "https://www.lse.ac.uk/people/adrien-couturier",
+        "https://ideas.repec.org/f/pco1219.html",
+        "https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=9669237",
+        "https://www.nber.org/people/adrien_couturier",
+        "https://cepr.org/about/people/adrien-couturier",
+        "https://www.theigc.org/people/adrien-couturier",
+        "https://www.researchgate.net/profile/Adrien-Couturier",
+        "https://www.linkedin.com/in/adrien-couturier-6351a2169/",
+        "https://twitter.com/adricouturier"
+      ]
+    }
   ]
 }
 </script>
