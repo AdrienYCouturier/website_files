@@ -37,12 +37,9 @@
 
 <!-- ============================================================
      FONTS
-     Fraunces  = display serif (name, section titles, paper titles)
-     Hanken Grotesk = body/UI sans (paragraphs, metadata, nav)
+     Times New Roman everywhere (system font, nothing to load).
+     To change it, edit --serif and --sans in :root below.
      ============================================================ -->
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet" />
 
 <style>
   /* ============================================================
@@ -57,8 +54,8 @@
     --accent-soft:#E2ECF6;   /* accent tint (badges) */
     --hair:       #DBE2EB;   /* hairline borders     */
 
-    --serif: "Fraunces", Georgia, "Times New Roman", serif;
-    --sans:  "Hanken Grotesk", system-ui, sans-serif;
+    --serif: "Times New Roman", Times, "Liberation Serif", serif;
+    --sans:  "Times New Roman", Times, "Liberation Serif", serif;
 
     --maxw: 1080px;
   }
@@ -72,8 +69,8 @@
     background: var(--paper);
     color: var(--ink);
     font-family: var(--sans);
-    font-size: 17px;
-    line-height: 1.65;
+    font-size: 18px;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
@@ -192,7 +189,7 @@
   /* portrait */
   .portrait { position: relative; max-width: 93%; justify-self: end; }
   .portrait img {
-    width: 100%; height: auto; display: block;
+    width: 89%; height: auto; display: block;
     border-radius: 2px;
   }
 
@@ -260,7 +257,7 @@
 
   .paper-title {
     font-family: var(--serif);
-    font-size: 1.22rem;
+    font-size: 1.3rem;
     font-weight: 500;
     line-height: 1.3;
     margin: 0 0 6px;
@@ -268,7 +265,7 @@
   .paper-title a { text-decoration: none; transition: color 0.2s ease; }
   .paper-title a:hover { color: var(--accent); }
 
-  .authors { font-size: 0.95rem; color: var(--muted); margin: 0 0 10px; }
+  .authors { font-size: 1rem; color: var(--muted); margin: 0 0 10px; }
   .authors a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--hair); transition: color 0.2s, border-color 0.2s; }
   .authors a:hover { color: var(--accent); border-color: var(--accent); }
 
@@ -287,9 +284,15 @@
 }
   .badge.neutral { background: var(--paper-deep); color: var(--muted); }
 
-  .links { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  /* ---- compact layout: title on its own line; authors, Paper, Abstract
+     and coverage share one row (the open abstract panel drops below) ---- */
+  .paper { display: flex; flex-wrap: wrap; align-items: center; column-gap: 8px; row-gap: 8px; }
+  .paper > .paper-title,
+  .paper > .paper-head { flex: 0 0 100%; margin: 0; }
+  .paper > .authors { margin: 0 10px 0 0; }
+  .links { display: contents; }
   .links a {
-    font-size: 0.82rem; font-weight: 500;
+    font-size: 0.9rem; font-weight: 500;
     text-decoration: none;
     padding: 4px 12px;
     border: 1px solid var(--hair);
@@ -301,7 +304,7 @@
   .links a.soon { color: var(--muted); border-style: dashed; pointer-events: none; }
 
   /* ---- coverage note, sits inline after the buttons ---- */
-  .coverage { font-size: 0.85rem; color: var(--ink); font-weight: 600; align-self: center; }
+  .coverage { font-size: 0.95rem; color: var(--ink); font-weight: 600; align-self: center; }
   .coverage a {
     font-weight: 400; font-style: italic;
     color: var(--muted); text-decoration: none;
@@ -318,7 +321,7 @@
     list-style: none; cursor: pointer; user-select: none;
     display: inline-flex; align-items: center; gap: 6px;
     width: max-content;
-    font-size: 0.82rem; font-weight: 500;
+    font-size: 0.9rem; font-weight: 500;
     padding: 4px 12px;
     border: 1px solid var(--hair); border-radius: 2px;
     color: var(--ink);
@@ -335,7 +338,7 @@
     background: var(--paper-deep);
     border-left: 2px solid var(--accent);
     border-radius: 3px;
-    font-size: 0.95rem;
+    font-size: 1rem;
     line-height: 1.65;
     color: var(--ink);
     width: 100%;
@@ -627,10 +630,14 @@ erogeneity.</p></div>
         </article>
 
         <article class="paper">
-          <h3 class="paper-title">Worldwide Environmental Engel Curves</h3>
+          <h3 class="paper-title"><a href="https://adrienycouturier.github.io/website_files/WEEC.pdf" target="_blank" rel="noopener">Worldwide Environmental Engel Curves</a></h3>
           <p class="authors">with <a href="https://mariondumas.github.io/" target="_blank" rel="noopener">Marion Dumas</a>, <a href="https://sites.google.com/site/lgadenne/home" target="_blank" rel="noopener">Lucie Gadenne</a> and <a href="https://www.xavierjaravel.com/" target="_blank" rel="noopener">Xavier Jaravel</a></p>
           <div class="links">
-            <a class="soon">Draft coming soon</a>
+            <a href="https://adrienycouturier.github.io/website_files/WEEC.pdf" target="_blank" rel="noopener">Paper</a>
+            <details class="abstract">
+              <summary><span class="chev">&#9656;</span> Abstract</summary>
+              <div class="abstract-body"><p>How household greenhouse gas emissions scale with income is central to forecasting the environmental consequences of global growth. We construct a new cross-country database that harmonizes household consumption surveys for twenty-four countries with global data on direct and indirect emissions, enabling the first consistent estimation of environmental Engel curves worldwide. We show that the global elasticity of GHG emissions with respect to household expenditure is around 0.81 when evaluated using a common world-average vector of supply-chain carbon intensities per euro of expenditure. Decompositions highlight shifts across broad consumption categories and substitution toward less GHG-intensive goods within utilities as forces flattening the curve. Using retail scanner data and detailed product-level emission data, we show that quality differences and within-category heterogeneity generate only minor biases. Thus, global GHG Engel curves are largely shaped by broad consumption patterns. Overall, the contribution of demand-side non-homotheticities to long-run decarbonisation is comparable to the contribution of an entire “hard-to-abate” sector like cement, steel, or global aviation and shipping combined.</p></div>
+            </details>
           </div>
         </article>
 
@@ -696,7 +703,7 @@ Taylor rules as instruments to navigate the stabilization-synchronization trade-
             <details class="abstract">
               <summary><span class="chev">&#9656;</span> Abstract</summary>
               <!-- PASTE ABSTRACT BELOW, between the <p> tags -->
-              <div class="abstract-body"><p> Ce rapport évalue l'impact du plan France Relance sur le PIB, l'investissement, la consommation et l'emploi, ainsi que leur répartition sectorielle et distributive, à l'aide d'un modèle macroéconomique de type HANK. Les résultats montrent une augmentation moyenne de 0.48\% du PIB par rapport à un scénario de référence (soit 206 000 emplois trimestriels), tirée principalement par l'investissement. Les effets sur le niveau des prix sont faibles en 2023 (hausse de 0.8\% attribuable à France Relance). Les ménages les plus riches, bénéficiant davantage de l'augmentation des revenus du capital, ont tiré un gain disproportionné en termes de bien-être.</p></div>
+              <div class="abstract-body"><p>Ce rapport évalue l'impact du plan France Relance sur le PIB, l'investissement, la consommation et l'emploi, ainsi que leur répartition sectorielle et distributive, à l'aide d'un modèle macroéconomique de type HANK. Les résultats montrent une augmentation moyenne de 0.48\% du PIB par rapport à un scénario de référence (soit 206 000 emplois trimestriels), tirée principalement par l'investissement. Les effets sur le niveau des prix sont faibles en 2023 (hausse de 0.8\% attribuable à France Relance). Les ménages les plus riches, bénéficiant davantage de l'augmentation des revenus du capital, ont tiré un gain disproportionné en termes de bien-être.</p></div>
             </details>
           </div>
         </article>
